@@ -1,0 +1,575 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>张珂 - 中山大学地球科学与工程学院</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: "Microsoft YaHei", "Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", sans-serif;
+            line-height: 1.8;
+            color: #333;
+            background: #f5f5f5;
+        }
+        
+        /* 顶部导航 */
+        .header {
+            background: #fff;
+            border-bottom: 3px solid #00693E;
+            padding: 15px 0;
+        }
+        
+        .header-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo img {
+            height: 50px;
+        }
+        
+        .logo-text {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #8B0012;
+        }
+        
+        .nav {
+            display: flex;
+            gap: 25px;
+        }
+        
+        .nav a {
+            color: #333;
+            text-decoration: none;
+            font-size: 0.95em;
+            transition: color 0.3s;
+        }
+        
+        .nav a:hover {
+            color: #00693E;
+        }
+        
+        .lang-switch {
+            color: #00693E;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        
+        /* 面包屑 */
+        .breadcrumb {
+            background: #fff;
+            padding: 15px 0;
+            border-bottom: 1px solid #e0e0e0;
+        }
+        
+        .breadcrumb-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        .breadcrumb a {
+            color: #666;
+            text-decoration: none;
+        }
+        
+        .breadcrumb a:hover {
+            color: #00693E;
+        }
+        
+        .breadcrumb span {
+            color: #999;
+            margin: 0 8px;
+        }
+        
+        /* 主内容区 */
+        .main {
+            max-width: 1200px;
+            margin: 30px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            gap: 40px;
+        }
+        
+        /* 左侧个人信息卡片 */
+        .profile-card {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            padding: 30px;
+            text-align: center;
+            height: fit-content;
+        }
+        
+        .profile-photo {
+            width: 200px;
+            height: 240px;
+            object-fit: cover;
+            border: 3px solid #e0e0e0;
+            margin-bottom: 20px;
+            background: #f5f5f5;
+        }
+        
+        .profile-name {
+            font-size: 1.5em;
+            font-weight: bold;
+            color: #333;
+            margin-bottom: 10px;
+        }
+        
+        .profile-title {
+            font-size: 1.1em;
+            color: #00693E;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid #00693E;
+        }
+        
+        .profile-info {
+            text-align: left;
+            font-size: 0.95em;
+            line-height: 2;
+        }
+        
+        .profile-info p {
+            margin-bottom: 8px;
+        }
+        
+        .profile-info strong {
+            color: #333;
+        }
+        
+        /* 右侧内容区 */
+        .content {
+            background: #fff;
+            border: 1px solid #e0e0e0;
+            padding: 40px;
+        }
+        
+        .section {
+            margin-bottom: 35px;
+        }
+        
+        .section-title {
+            font-size: 1.3em;
+            font-weight: bold;
+            color: #00693E;
+            padding-bottom: 12px;
+            border-bottom: 2px solid #00693E;
+            margin-bottom: 20px;
+        }
+        
+        .section-content {
+            line-height: 2;
+            color: #333;
+        }
+        
+        .intro-text {
+            text-indent: 2em;
+            text-align: justify;
+        }
+        
+        /* 列表样式 */
+        .info-list {
+            list-style: none;
+        }
+        
+        .info-list li {
+            padding: 12px 0;
+            border-bottom: 1px solid #f0f0f0;
+            line-height: 1.8;
+        }
+        
+        .info-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .period {
+            display: inline-block;
+            width: 140px;
+            color: #666;
+            font-weight: 500;
+        }
+        
+        .info-content {
+            display: inline-block;
+            width: calc(100% - 150px);
+        }
+        
+        /* 项目列表 */
+        .project-list {
+            list-style: none;
+        }
+        
+        .project-list li {
+            padding: 15px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+        
+        .project-role {
+            display: inline-block;
+            background: #00693E;
+            color: #fff;
+            padding: 2px 10px;
+            border-radius: 3px;
+            font-size: 0.85em;
+            margin-right: 10px;
+        }
+        
+        .project-period {
+            color: #666;
+            font-size: 0.95em;
+            margin-left: 10px;
+        }
+        
+        .project-name {
+            display: block;
+            margin-top: 8px;
+            font-weight: 500;
+        }
+        
+        .project-source {
+            color: #666;
+            font-size: 0.95em;
+            margin-top: 5px;
+        }
+        
+        /* 论文列表 */
+        .publication-list {
+            list-style: decimal;
+            padding-left: 20px;
+        }
+        
+        .publication-list li {
+            padding: 10px 0;
+            line-height: 1.8;
+            text-align: justify;
+        }
+        
+        .publication-authors {
+            font-weight: 500;
+        }
+        
+        .publication-title {
+            font-style: italic;
+        }
+        
+        .publication-journal {
+            color: #666;
+        }
+        
+        /* 标签 */
+        .tag {
+            display: inline-block;
+            background: #f5f5f5;
+            padding: 4px 12px;
+            border-radius: 3px;
+            font-size: 0.9em;
+            margin: 3px;
+            color: #666;
+        }
+        
+        /* 页脚 */
+        .footer {
+            background: #fff;
+            border-top: 3px solid #00693E;
+            padding: 40px 0;
+            margin-top: 50px;
+        }
+        
+        .footer-inner {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            text-align: center;
+            color: #666;
+            font-size: 0.95em;
+        }
+        
+        .footer p {
+            margin: 8px 0;
+        }
+        
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .main {
+                grid-template-columns: 1fr;
+                gap: 20px;
+            }
+            
+            .profile-card {
+                order: -1;
+            }
+            
+            .header-inner {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .nav {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部导航 -->
+    <header class="header">
+        <div class="header-inner">
+            <div class="logo">
+                <div class="logo-text">张珂教授个人主页</div>
+            </div>
+            <nav class="nav">
+                <span class="lang-switch" onclick="toggleLanguage()">English</span>
+            </nav>
+        </div>
+    </header>
+    
+    <!-- 面包屑 -->
+    <div class="breadcrumb">
+        <div class="breadcrumb-inner">
+            <span id="breadcrumbName">张珂教授</span>
+        </div>
+    </div>
+    
+    <!-- 主内容区 -->
+    <main class="main">
+        <!-- 左侧个人信息卡片 -->
+        <aside class="profile-card">
+            <img src="zhangke.jpg" alt="张珂教授" class="profile-photo" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22240%22%3E%3Crect fill=%22%23f5f5f5%22 width=%22200%22 height=%22240%22/%3E%3Ctext fill=%22%23999%22 font-family=%22Arial%22 font-size=%2216%22 x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22%3EPhoto%3C/text%3E%3C/svg%3E'">
+            <div class="profile-name" id="profileName">张珂</div>
+            <div class="profile-title" id="profileTitle">教授</div>
+            <div class="profile-info">
+                <p><strong>研究领域：</strong><span id="researchAreas">构造地质，新构造，地貌学与第四纪地质学</span></p>
+                <p><strong>招生方向：</strong><span id="enrollmentDirection">新构造学，构造地貌学</span></p>
+                <p><strong>电子邮箱：</strong><span id="email">eeszke@mail.sysu.edu.cn</span></p>
+                <p><strong>办公地点：</strong><span id="office">海琴四号大楼 B306</span></p>
+            </div>
+        </aside>
+        
+        <!-- 右侧内容区 -->
+        <article class="content">
+            <!-- 个人简介 -->
+            <section class="section">
+                <h2 class="section-title">个人简介</h2>
+                <div class="section-content">
+                    <p class="intro-text" id="introText"></p>
+                </div>
+            </section>
+            
+            <!-- 教育背景 -->
+            <section class="section">
+                <h2 class="section-title">教育背景</h2>
+                <ul class="info-list" id="educationList"></ul>
+            </section>
+            
+            <!-- 职业经历 -->
+            <section class="section">
+                <h2 class="section-title">职业经历</h2>
+                <ul class="info-list" id="experienceList"></ul>
+            </section>
+            
+            <!-- 讲授课程 -->
+            <section class="section">
+                <h2 class="section-title">讲授课程</h2>
+                <div class="section-content">
+                    <p><strong>本科生课程：</strong><span id="undergradCourses"></span></p>
+                    <p style="margin-top: 10px;"><strong>研究生课程：</strong><span id="gradCourses"></span></p>
+                </div>
+            </section>
+            
+            <!-- 科研项目 -->
+            <section class="section">
+                <h2 class="section-title">科研项目</h2>
+                <ul class="project-list" id="projectsList"></ul>
+            </section>
+            
+            <!-- 发表论文 -->
+            <section class="section">
+                <h2 class="section-title">发表论文</h2>
+                <ol class="publication-list" id="publicationsList"></ol>
+            </section>
+            
+            <!-- 专著教材 -->
+            <section class="section">
+                <h2 class="section-title">专著教材</h2>
+                <ul class="info-list" id="booksList"></ul>
+            </section>
+            
+            <!-- 荣获奖项 -->
+            <section class="section">
+                <h2 class="section-title">荣获奖项</h2>
+                <ul class="info-list" id="awardsList"></ul>
+            </section>
+            
+            <!-- 学术兼职 -->
+            <section class="section">
+                <h2 class="section-title">学术兼职</h2>
+                <ul class="info-list" id="servicesList"></ul>
+            </section>
+        </article>
+    </main>
+    
+    <!-- 页脚 -->
+    <footer class="footer">
+        <div class="footer-inner">
+            <p>Copyright © 张珂教授个人主页</p>
+            <p style="font-size: 0.85em; color: #999; margin-top: 10px;">Powered by GitHub Pages</p>
+        </div>
+    </footer>
+    
+    <script>
+        let currentLang = 'zh';
+        let cvData = {};
+        
+        async function loadCVData() {
+            try {
+                const response = await fetch('cv-data.json');
+                cvData = await response.json();
+                renderAll();
+            } catch (error) {
+                console.error('Error loading CV data:', error);
+            }
+        }
+        
+        function renderAll() {
+            renderProfile();
+            renderIntro();
+            renderEducation();
+            renderExperience();
+            renderCourses();
+            renderProjects();
+            renderPublications();
+            renderBooks();
+            renderAwards();
+            renderServices();
+        }
+        
+        function renderProfile() {
+            const p = cvData.personal;
+            document.getElementById('profileName').textContent = currentLang === 'zh' ? p.name : p.nameEn;
+            document.getElementById('profileTitle').textContent = currentLang === 'zh' ? p.title : p.titleEn;
+            document.getElementById('researchAreas').textContent = currentLang === 'zh' ? p.researchAreas : p.researchAreasEn;
+            document.getElementById('enrollmentDirection').textContent = currentLang === 'zh' ? p.enrollmentDirection : p.enrollmentDirectionEn;
+            document.getElementById('email').textContent = p.email;
+            document.getElementById('office').textContent = currentLang === 'zh' ? p.office : p.officeEn;
+            document.getElementById('breadcrumbName').textContent = currentLang === 'zh' ? p.name : p.nameEn;
+        }
+        
+        function renderIntro() {
+            document.getElementById('introText').textContent = currentLang === 'zh' ? cvData.intro.zh : cvData.intro.en;
+        }
+        
+        function renderEducation() {
+            const container = document.getElementById('educationList');
+            container.innerHTML = cvData.education.map(item => `
+                <li>
+                    <span class="period">${item.period}</span>
+                    <span class="info-content">
+                        ${currentLang === 'zh' ? item.school : item.schoolEn}，${currentLang === 'zh' ? item.degree : item.degreeEn}，${currentLang === 'zh' ? item.major : item.majorEn}
+                    </span>
+                </li>
+            `).join('');
+        }
+        
+        function renderExperience() {
+            const container = document.getElementById('experienceList');
+            container.innerHTML = cvData.experience.map(item => `
+                <li>
+                    <span class="period">${item.period}</span>
+                    <span class="info-content">
+                        ${currentLang === 'zh' ? item.institution : item.institutionEn}，${currentLang === 'zh' ? item.position : item.positionEn}
+                    </span>
+                </li>
+            `).join('');
+        }
+        
+        function renderCourses() {
+            const undergrad = cvData.courses.undergraduate.map(c => currentLang === 'zh' ? c.name : c.nameEn).join('、');
+            const grad = cvData.courses.graduate.map(c => currentLang === 'zh' ? c.name : c.nameEn).join('、');
+            document.getElementById('undergradCourses').textContent = undergrad;
+            document.getElementById('gradCourses').textContent = grad;
+        }
+        
+        function renderProjects() {
+            const container = document.getElementById('projectsList');
+            container.innerHTML = cvData.projects.map(item => `
+                <li>
+                    <span class="project-role">${currentLang === 'zh' ? item.role : item.roleEn}</span>
+                    <span class="project-period">${item.period}</span>
+                    <span class="project-name">${currentLang === 'zh' ? item.name : item.nameEn}</span>
+                    <span class="project-source">${currentLang === 'zh' ? item.source : item.sourceEn}${item.number ? ` (${item.number})` : ''}</span>
+                </li>
+            `).join('');
+        }
+        
+        function renderPublications() {
+            const container = document.getElementById('publicationsList');
+            container.innerHTML = cvData.publications.map((item, index) => `
+                <li>
+                    <span class="publication-authors">${item.authors}.</span>
+                    <span class="publication-title">"${item.title}".</span>
+                    <span class="publication-journal">${item.journal}, ${item.year}${item.volume ? `, ${item.volume}` : ''}${item.note ? ` (${item.note})` : ''}</span>
+                </li>
+            `).join('');
+        }
+        
+        function renderBooks() {
+            const container = document.getElementById('booksList');
+            container.innerHTML = cvData.books.map(item => `
+                <li>
+                    <span class="period">${item.year}</span>
+                    <span class="info-content">
+                        ${item.authors}. 《${item.title}》. ${item.publisher}.
+                    </span>
+                </li>
+            `).join('');
+        }
+        
+        function renderAwards() {
+            const container = document.getElementById('awardsList');
+            container.innerHTML = cvData.awards.map(item => `
+                <li>
+                    <span class="period">${item.year}年</span>
+                    <span class="info-content">
+                        ${item.name}，${item.award}${item.role ? `（${item.role}）` : ''}
+                    </span>
+                </li>
+            `).join('');
+        }
+        
+        function renderServices() {
+            const container = document.getElementById('servicesList');
+            container.innerHTML = cvData.services.map(item => `
+                <li>${currentLang === 'zh' ? item.name : item.nameEn}，${currentLang === 'zh' ? item.role : item.roleEn}</li>
+            `).join('');
+        }
+        
+        function toggleLanguage() {
+            currentLang = currentLang === 'zh' ? 'en' : 'zh';
+            renderAll();
+            document.querySelector('.lang-switch').textContent = currentLang === 'zh' ? 'English' : '中文';
+        }
+        
+        loadCVData();
+    </script>
+</body>
+</html>
