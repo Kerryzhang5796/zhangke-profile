@@ -308,6 +308,26 @@
             margin: 8px 0;
         }
         
+        /* 二维码样式 */
+        .qr-code {
+            margin-top: 20px;
+            display: inline-block;
+        }
+        
+        .qr-code img {
+            border: 1px solid #e0e0e0;
+            padding: 5px;
+            background: #fff;
+            width: 120px;
+            height: 120px;
+        }
+        
+        .qr-code p {
+            font-size: 0.8em;
+            color: #666;
+            margin-top: 8px;
+        }
+        
         /* 响应式 - 平板和手机 */
         @media (max-width: 768px) {
             .main {
@@ -394,6 +414,11 @@
             .footer-inner {
                 padding: 20px 15px;
                 font-size: 0.85em;
+            }
+            
+            .qr-code img {
+                width: 100px;
+                height: 100px;
             }
         }
         
@@ -521,6 +546,12 @@
         <div class="footer-inner">
             <p>Copyright © <span id="footerText">张珂教授个人主页</span></p>
             <p style="font-size: 0.85em; color: #999; margin-top: 10px;">Powered by GitHub Pages</p>
+            
+            <!-- 二维码 -->
+            <div class="qr-code">
+                <img src="website-qr.png" alt="网站二维码">
+                <p id="qrText">扫码访问手机版</p>
+            </div>
         </div>
     </footer>
     
@@ -564,6 +595,10 @@
             footer: {
                 zh: '张珂教授个人主页',
                 en: 'Prof. Zhang Ke\'s Homepage'
+            },
+            qrText: {
+                zh: '扫码访问手机版',
+                en: 'Scan for Mobile'
             }
         };
         
@@ -611,6 +646,7 @@
             // 更新标题
             document.getElementById('headerTitle').textContent = translations.headerTitle[currentLang];
             document.getElementById('footerText').textContent = translations.footer[currentLang];
+            document.getElementById('qrText').textContent = translations.qrText[currentLang];
             document.title = translations.pageTitle[currentLang];
             
             // 更新板块标题

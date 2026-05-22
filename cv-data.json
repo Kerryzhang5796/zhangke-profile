@@ -21,7 +21,7 @@
   "education": [
     {"period": "1996.9-2000.6", "school": "北京大学", "schoolEn": "Peking University", "degree": "理学博士", "degreeEn": "Doctor of Science", "major": "第四纪地质", "majorEn": "Quaternary Geology"},
     {"period": "1985.9-1988.6", "school": "中山大学", "schoolEn": "Sun Yat-sen University", "degree": "理学硕士", "degreeEn": "Master of Science", "major": "构造地质学", "majorEn": "Structural Geology"},
-    {"period": "1979.9-1983.6", "school": "东华理工大学", "schoolEn": "East China University of Technology", "degree": "工学学士", "degreeEn": "Bachelor of Engineering", "major": "放射性普查勘探", "majorEn": "Mineral Prospecting"}
+    {"period": "1979.9-1983.6", "school": "东华理工大学", "schoolEn": "East China University of Technology", "degree": "工学学士", "degreeEn": "Bachelor of Engineering", "major": "地质普查勘探", "majorEn": "Geological Prospecting"}
   ],
   "experience": [
     {"period": "1988.7-至今", "institution": "中山大学地球科学与工程学院", "institutionEn": "School of Earth Sciences and Engineering, Sun Yat-sen University", "position": "助教、讲师、副教授、教授", "positionEn": "Assistance Professor, Lecturer, Associate Professor and Professor"},
