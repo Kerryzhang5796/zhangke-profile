@@ -423,7 +423,7 @@
     <header class="header">
         <div class="header-inner">
             <div class="logo">
-                <div class="logo-text">张珂教授个人主页</div>
+                <div class="logo-text" id="headerTitle">张珂教授个人主页</div>
             </div>
             <nav class="nav">
                 <span class="lang-switch" onclick="toggleLanguage()">English</span>
@@ -446,10 +446,10 @@
             <div class="profile-name" id="profileName">张珂</div>
             <div class="profile-title" id="profileTitle">教授</div>
             <div class="profile-info">
-                <p><strong>研究领域：</strong><span id="researchAreas">构造地质，新构造，地貌学与第四纪地质学</span></p>
-                <p><strong>招生方向：</strong><span id="enrollmentDirection">新构造学，构造地貌学</span></p>
-                <p><strong>电子邮箱：</strong><span id="email">eeszke@mail.sysu.edu.cn</span></p>
-                <p><strong>办公地点：</strong><span id="office">海琴四号大楼 B306</span></p>
+                <p><strong id="labelResearch">研究领域：</strong><span id="researchAreas">构造地质，新构造，地貌学与第四纪地质学</span></p>
+                <p><strong id="labelEnrollment">招生方向：</strong><span id="enrollmentDirection">新构造学，构造地貌学</span></p>
+                <p><strong id="labelEmail">电子邮箱：</strong><span id="email">eeszke@mail.sysu.edu.cn</span></p>
+                <p><strong id="labelOffice">办公地点：</strong><span id="office">海琴四号大楼 B306</span></p>
             </div>
         </aside>
         
@@ -457,7 +457,7 @@
         <article class="content">
             <!-- 个人简介 -->
             <section class="section">
-                <h2 class="section-title">个人简介</h2>
+                <h2 class="section-title" id="titleIntro">个人简介</h2>
                 <div class="section-content">
                     <p class="intro-text" id="introText"></p>
                 </div>
@@ -465,52 +465,52 @@
             
             <!-- 教育背景 -->
             <section class="section">
-                <h2 class="section-title">教育背景</h2>
+                <h2 class="section-title" id="titleEducation">教育背景</h2>
                 <ul class="info-list" id="educationList"></ul>
             </section>
             
             <!-- 职业经历 -->
             <section class="section">
-                <h2 class="section-title">职业经历</h2>
+                <h2 class="section-title" id="titleExperience">职业经历</h2>
                 <ul class="info-list" id="experienceList"></ul>
             </section>
             
             <!-- 讲授课程 -->
             <section class="section">
-                <h2 class="section-title">讲授课程</h2>
+                <h2 class="section-title" id="titleCourses">讲授课程</h2>
                 <div class="section-content">
-                    <p><strong>本科生课程：</strong><span id="undergradCourses"></span></p>
-                    <p style="margin-top: 10px;"><strong>研究生课程：</strong><span id="gradCourses"></span></p>
+                    <p><strong id="labelUndergrad">本科生课程：</strong><span id="undergradCourses"></span></p>
+                    <p style="margin-top: 10px;"><strong id="labelGraduate">研究生课程：</strong><span id="gradCourses"></span></p>
                 </div>
             </section>
             
             <!-- 科研项目 -->
             <section class="section">
-                <h2 class="section-title">科研项目</h2>
+                <h2 class="section-title" id="titleProjects">科研项目</h2>
                 <ul class="project-list" id="projectsList"></ul>
             </section>
             
             <!-- 发表论文 -->
             <section class="section">
-                <h2 class="section-title">发表论文</h2>
+                <h2 class="section-title" id="titlePublications">发表论文</h2>
                 <ol class="publication-list" id="publicationsList"></ol>
             </section>
             
             <!-- 专著教材 -->
             <section class="section">
-                <h2 class="section-title">专著教材</h2>
+                <h2 class="section-title" id="titleBooks">专著教材</h2>
                 <ul class="info-list" id="booksList"></ul>
             </section>
             
             <!-- 荣获奖项 -->
             <section class="section">
-                <h2 class="section-title">荣获奖项</h2>
+                <h2 class="section-title" id="titleAwards">荣获奖项</h2>
                 <ul class="info-list" id="awardsList"></ul>
             </section>
             
             <!-- 学术兼职 -->
             <section class="section">
-                <h2 class="section-title">学术兼职</h2>
+                <h2 class="section-title" id="titleServices">学术兼职</h2>
                 <ul class="info-list" id="servicesList"></ul>
             </section>
         </article>
@@ -519,7 +519,7 @@
     <!-- 页脚 -->
     <footer class="footer">
         <div class="footer-inner">
-            <p>Copyright © 张珂教授个人主页</p>
+            <p>Copyright © <span id="footerText">张珂教授个人主页</span></p>
             <p style="font-size: 0.85em; color: #999; margin-top: 10px;">Powered by GitHub Pages</p>
         </div>
     </footer>
@@ -536,30 +536,34 @@
             },
             headerTitle: {
                 zh: '张珂教授个人主页',
-                en: 'Professor Zhang Ke\'s Personal Homepage'
+                en: 'Professor Zhang Ke\'s Homepage'
             },
             breadcrumb: {
                 zh: '张珂教授',
-                en: 'Professor Zhang Ke'
+                en: 'Prof. Zhang Ke'
+            },
+            labels: {
+                research: { zh: '研究领域：', en: 'Research Areas: ' },
+                enrollment: { zh: '招生方向：', en: 'Enrollment: ' },
+                email: { zh: '电子邮箱：', en: 'Email: ' },
+                office: { zh: '办公地点：', en: 'Office: ' },
+                undergrad: { zh: '本科生课程：', en: 'Undergraduate: ' },
+                graduate: { zh: '研究生课程：', en: 'Graduate: ' }
             },
             sections: {
                 intro: { zh: '个人简介', en: 'Introduction' },
                 education: { zh: '教育背景', en: 'Education' },
                 experience: { zh: '职业经历', en: 'Experience' },
                 courses: { zh: '讲授课程', en: 'Courses' },
-                projects: { zh: '科研项目', en: 'Research Projects' },
+                projects: { zh: '科研项目', en: 'Projects' },
                 publications: { zh: '发表论文', en: 'Publications' },
                 books: { zh: '专著教材', en: 'Books' },
                 awards: { zh: '荣获奖项', en: 'Awards' },
-                services: { zh: '学术兼职', en: 'Academic Services' }
-            },
-            courses: {
-                undergrad: { zh: '本科生课程：', en: 'Undergraduate Courses: ' },
-                graduate: { zh: '研究生课程：', en: 'Graduate Courses: ' }
+                services: { zh: '学术兼职', en: 'Services' }
             },
             footer: {
                 zh: '张珂教授个人主页',
-                en: 'Professor Zhang Ke\'s Personal Homepage'
+                en: 'Prof. Zhang Ke\'s Homepage'
             }
         };
         
@@ -584,7 +588,6 @@
             renderBooks();
             renderAwards();
             renderServices();
-            updateSectionTitles();
         }
         
         function renderProfile() {
@@ -597,8 +600,29 @@
             document.getElementById('office').textContent = currentLang === 'zh' ? p.office : p.officeEn;
             document.getElementById('breadcrumbName').textContent = currentLang === 'zh' ? p.name : p.nameEn;
             
-            // 更新网页标题
+            // 更新标签
+            document.getElementById('labelResearch').textContent = translations.labels.research[currentLang];
+            document.getElementById('labelEnrollment').textContent = translations.labels.enrollment[currentLang];
+            document.getElementById('labelEmail').textContent = translations.labels.email[currentLang];
+            document.getElementById('labelOffice').textContent = translations.labels.office[currentLang];
+            document.getElementById('labelUndergrad').textContent = translations.labels.undergrad[currentLang];
+            document.getElementById('labelGraduate').textContent = translations.labels.graduate[currentLang];
+            
+            // 更新标题
+            document.getElementById('headerTitle').textContent = translations.headerTitle[currentLang];
+            document.getElementById('footerText').textContent = translations.footer[currentLang];
             document.title = translations.pageTitle[currentLang];
+            
+            // 更新板块标题
+            document.getElementById('titleIntro').textContent = translations.sections.intro[currentLang];
+            document.getElementById('titleEducation').textContent = translations.sections.education[currentLang];
+            document.getElementById('titleExperience').textContent = translations.sections.experience[currentLang];
+            document.getElementById('titleCourses').textContent = translations.sections.courses[currentLang];
+            document.getElementById('titleProjects').textContent = translations.sections.projects[currentLang];
+            document.getElementById('titlePublications').textContent = translations.sections.publications[currentLang];
+            document.getElementById('titleBooks').textContent = translations.sections.books[currentLang];
+            document.getElementById('titleAwards').textContent = translations.sections.awards[currentLang];
+            document.getElementById('titleServices').textContent = translations.sections.services[currentLang];
         }
         
         function renderIntro() {
@@ -611,7 +635,7 @@
                 <li>
                     <span class="period">${item.period}</span>
                     <span class="info-content">
-                        ${currentLang === 'zh' ? item.school : item.schoolEn}，${currentLang === 'zh' ? item.degree : item.degreeEn}，${currentLang === 'zh' ? item.major : item.majorEn}
+                        ${currentLang === 'zh' ? item.school : item.schoolEn}, ${currentLang === 'zh' ? item.degree : item.degreeEn}, ${currentLang === 'zh' ? item.major : item.majorEn}
                     </span>
                 </li>
             `).join('');
@@ -623,22 +647,17 @@
                 <li>
                     <span class="period">${item.period}</span>
                     <span class="info-content">
-                        ${currentLang === 'zh' ? item.institution : item.institutionEn}，${currentLang === 'zh' ? item.position : item.positionEn}
+                        ${currentLang === 'zh' ? item.institution : item.institutionEn}, ${currentLang === 'zh' ? item.position : item.positionEn}
                     </span>
                 </li>
             `).join('');
         }
         
         function renderCourses() {
-            const undergrad = cvData.courses.undergraduate.map(c => currentLang === 'zh' ? c.name : c.nameEn).join(',');
-            const grad = cvData.courses.graduate.map(c => currentLang === 'zh' ? c.name : c.nameEn).join(',');
+            const undergrad = cvData.courses.undergraduate.map(c => currentLang === 'zh' ? c.name : c.nameEn).join(', ');
+            const grad = cvData.courses.graduate.map(c => currentLang === 'zh' ? c.name : c.nameEn).join(', ');
             document.getElementById('undergradCourses').textContent = undergrad;
             document.getElementById('gradCourses').textContent = grad;
-            
-            // 更新课程标签
-            const courseLabels = document.querySelectorAll('.section-content strong');
-            if (courseLabels[0]) courseLabels[0].textContent = translations.courses.undergrad[currentLang];
-            if (courseLabels[1]) courseLabels[1].textContent = translations.courses.graduate[currentLang];
         }
         
         function renderProjects() {
@@ -648,18 +667,18 @@
                     <span class="project-role">${currentLang === 'zh' ? item.role : item.roleEn}</span>
                     <span class="project-period">${item.period}</span>
                     <span class="project-name">${currentLang === 'zh' ? item.name : item.nameEn}</span>
-                    <span class="project-source">${currentLang === 'zh' ? item.source : item.sourceEn}${item.number ? ` (${item.number})` : ''}</span>
+                    <span class="project-source">${currentLang === 'zh' ? item.source : item.sourceEn}${item.number ? ' (' + item.number + ')' : ''}</span>
                 </li>
             `).join('');
         }
         
         function renderPublications() {
             const container = document.getElementById('publicationsList');
-            container.innerHTML = cvData.publications.map((item, index) => `
+            container.innerHTML = cvData.publications.map(item => `
                 <li>
                     <span class="publication-authors">${item.authors}.</span>
                     <span class="publication-title">"${item.title}".</span>
-                    <span class="publication-journal">${item.journal}, ${item.year}${item.volume ? `, ${item.volume}` : ''}${item.note ? ` (${item.note})` : ''}</span>
+                    <span class="publication-journal">${item.journal}, ${item.year}${item.volume ? ', ' + item.volume : ''}${item.note ? ' (' + item.note + ')' : ''}</span>
                 </li>
             `).join('');
         }
@@ -670,7 +689,7 @@
                 <li>
                     <span class="period">${item.year}</span>
                     <span class="info-content">
-                        ${item.authors}. 《${item.title}》. ${item.publisher}.
+                        ${item.authors}. ${currentLang === 'zh' ? '《' + item.title + '》' : item.title}. ${item.publisher}.
                     </span>
                 </li>
             `).join('');
@@ -680,9 +699,9 @@
             const container = document.getElementById('awardsList');
             container.innerHTML = cvData.awards.map(item => `
                 <li>
-                    <span class="period">${item.year}年</span>
+                    <span class="period">${item.year}${currentLang === 'zh' ? '年' : ''}</span>
                     <span class="info-content">
-                        ${item.name}，${item.award}${item.role ? `（${item.role}）` : ''}
+                        ${item.name}, ${item.award}${item.role ? (currentLang === 'zh' ? '（' + item.role + '）' : ' (' + item.role + ')') : ''}
                     </span>
                 </li>
             `).join('');
@@ -691,21 +710,8 @@
         function renderServices() {
             const container = document.getElementById('servicesList');
             container.innerHTML = cvData.services.map(item => `
-                <li>${currentLang === 'zh' ? item.name : item.nameEn}，${currentLang === 'zh' ? item.role : item.roleEn}</li>
+                <li>${currentLang === 'zh' ? item.name : item.nameEn}, ${currentLang === 'zh' ? item.role : item.roleEn}</li>
             `).join('');
-        }
-        
-        function updateSectionTitles() {
-            const sectionTitles = document.querySelectorAll('.section-title');
-            sectionTitles[0].textContent = translations.sections.intro[currentLang];
-            sectionTitles[1].textContent = translations.sections.education[currentLang];
-            sectionTitles[2].textContent = translations.sections.experience[currentLang];
-            sectionTitles[3].textContent = translations.sections.courses[currentLang];
-            sectionTitles[4].textContent = translations.sections.projects[currentLang];
-            sectionTitles[5].textContent = translations.sections.publications[currentLang];
-            sectionTitles[6].textContent = translations.sections.books[currentLang];
-            sectionTitles[7].textContent = translations.sections.awards[currentLang];
-            sectionTitles[8].textContent = translations.sections.services[currentLang];
         }
         
         function toggleLanguage() {
