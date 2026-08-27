@@ -721,27 +721,23 @@
                     ? item.authorsZh : item.authors;
 
                 // 截断：中文论文 → “等”；英文论文 → “et al.”
-                // authorsDisplay 不含末尾句点；截断后缀本身含句点
-                let truncated, suffix;
+                // authorsZh 末尾可能是"等."（中文论文中文版）或"."（单人/双人）；authors 末尾可能是"et al."（>3人）或"."（≤3人）
+                // 统一策略：去掉末尾已存在的后缀 → 截断前3人 → 加回正确后缀
+                const chineseSuffixRE = /\s*[，,]\s*et al\.?$/i;
+                const chineseShortSuffixRE = /\s*[，,]\s*等[。.]?$/;
+                let parts, suffix;
                 if (isChinesePaper) {
-                    const parts = rawAuthors.split(/[,，]/).map(p => p.trim());
-                    if (parts.length > 3) {
-                        truncated = parts.slice(0, 3).join(', ');
-                        suffix = ' 等.';
-                    } else {
-                        truncated = rawAuthors;
-                        suffix = rawAuthors.endsWith('.') ? '' : '.';
-                    }
+                    parts = rawAuthors.split(/[,，]/).map(p => p.trim());
+                    suffix = ' 等.';
                 } else {
-                    const parts = rawAuthors.split(',').map(p => p.trim());
-                    if (parts.length > 3) {
-                        truncated = parts.slice(0, 3).join(', ');
-                        suffix = ' et al.';
-                    } else {
-                        truncated = rawAuthors;
-                        suffix = rawAuthors.endsWith('.') ? '' : '.';
-                    }
+                    // 英文论文 authors 末尾含 et al. → 先去掉它再截断
+                    const stripped = rawAuthors.replace(chineseSuffixRE, '');
+                    parts = stripped.split(',').map(p => p.trim());
+                    suffix = ' et al.';
                 }
+                const truncated = parts.length > 3
+                    ? parts.slice(0, 3).join(', ')
+                    : parts.join(', ');
                 const authorsFinal = truncated + suffix;
 
                 // 标题
