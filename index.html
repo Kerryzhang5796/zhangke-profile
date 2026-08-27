@@ -713,31 +713,26 @@
             container.innerHTML = cvData.publications.map(item => {
                 const isChinesePaper = item.lang === 'zh';
 
-                // 取哪套作者字段：中文论文在中文界面用 authorsZh，其余全部用 authors
-                const rawAuthors = (isChinesePaper && currentLang === 'zh' && item.authorsZh)
+                // 取哪套作者字段：中文论文在中文界面用 authorsZh（去末尾.），其余全部用 authors
+                const rawAuthors0 = (isChinesePaper && currentLang === 'zh' && item.authorsZh)
                     ? item.authorsZh : item.authors;
+                // authorsZh 末尾已有 .（如 "等."），去掉避免截断后叠句点
+                const rawAuthors = (isChinesePaper && currentLang === 'zh')
+                    ? rawAuthors0.replace(/\.\s*$/, '') : rawAuthors0;
 
-                // 英文模式：>3人 → 前3人 + et al.；≤3人 → 全名 + .
-                // 中文模式：>3人 → 前3人 + 等；≤3人 → 全名 + .
+                // 统一用逗号 split：英文拼音用英文逗号，中文用中文逗号或英文逗号均可
+                const parts = rawAuthors.split(/[,，]/).map(p => p.trim()).filter(p => p);
                 let suffix, firstThree;
-                if (currentLang === 'en') {
-                    const parts = rawAuthors.split(',').map(p => p.trim());
-                    if (parts.length > 3) {
+                if (parts.length > 3) {
+                    if (currentLang === 'en') {
                         suffix = ' et al.';
-                        firstThree = parts.slice(0, 3).join(', ');
                     } else {
-                        suffix = '.';
-                        firstThree = rawAuthors;
+                        suffix = '等';
                     }
+                    firstThree = parts.slice(0, 3).join(', ');
                 } else {
-                    const parts = rawAuthors.split(/[,，]/).map(p => p.trim());
-                    if (parts.length > 3) {
-                        suffix = ' 等';
-                        firstThree = parts.slice(0, 3).join('，');
-                    } else {
-                        suffix = '.';
-                        firstThree = rawAuthors;
-                    }
+                    suffix = '.';
+                    firstThree = parts.join(', ');
                 }
                 const authorsFinal = firstThree + suffix;
 
