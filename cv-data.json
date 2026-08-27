@@ -240,10 +240,13 @@
     },
     {
       "authors": "<b>Zhang K</b>.",
-      "title": "On the landform sieve and restoration: Inheritance and innovation of J.S. Lee's academic thoughts",
-      "journal": "Journal of Geomechanics",
+      "title": "地貌筛与地貌复原：李四光学术思想的继承与创新",
+      "journal": "地质力学学报",
       "year": "2019",
-      "volume": "25(5): 889-898"
+      "volume": "25(5): 889-898",
+      "lang": "zh",
+      "titleEn": "On the landform sieve and restoration: Inheritance and innovation of J.S. Lee's academic thoughts",
+      "journalEn": "Journal of Geomechanics"
     },
     {
       "authors": "Chen LY, <b>Zhang K</b>, Zhang GF, Fu JL",
