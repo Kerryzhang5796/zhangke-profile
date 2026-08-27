@@ -723,17 +723,18 @@
                 // 截断：中文论文 → “等”；英文论文 → “et al.”
                 // authorsZh 末尾可能是"等."（中文论文中文版）或"."（单人/双人）；authors 末尾可能是"et al."（>3人）或"."（≤3人）
                 // 统一策略：去掉末尾已存在的后缀 → 截断前3人 → 加回正确后缀
-                const chineseSuffixRE = /\s*[，,]\s*et al\.?$/i;
-                const chineseShortSuffixRE = /\s*[，,]\s*等[。.]?$/;
+                // 英文版 → 统一用 et al.；中文版且中文论文 → 用 等
+                const chineseSuffixRE = /\s*，?\s*et al\.?$/i;
                 let parts, suffix;
-                if (isChinesePaper) {
-                    parts = rawAuthors.split(/[,，]/).map(p => p.trim());
-                    suffix = ' 等.';
-                } else {
-                    // 英文论文 authors 末尾含 et al. → 先去掉它再截断
+                if (currentLang === 'en') {
+                    // 英文版：去掉末尾已有的 et al. 后截断前3人，再加 et al.
                     const stripped = rawAuthors.replace(chineseSuffixRE, '');
                     parts = stripped.split(',').map(p => p.trim());
                     suffix = ' et al.';
+                } else {
+                    // 中文版：用 authorsZh，>3人用 等
+                    parts = rawAuthors.split(/[,，]/).map(p => p.trim());
+                    suffix = ' 等.';
                 }
                 const truncated = parts.length > 3
                     ? parts.slice(0, 3).join(', ')
