@@ -750,7 +750,7 @@
                 return `<li>
                     <span class="publication-authors">${authorsFinal}</span>
                     <span class="publication-title">${title}.</span>
-                    <span class="publication-journal">${journal}, ${year}${volume}${absNote}</span>
+                    <span class="publication-journal">${journal}, ${year}${volume}${item.note ? ' (' + item.note + ')' : ''}${absNote}</span>
                 </li>`;
             }).join('');
         }
