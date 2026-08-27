@@ -259,8 +259,8 @@
         }
         
         .publication-list li {
-            padding: 8px 0;
-            line-height: 1.5;
+            padding: 4px 0;
+            line-height: 1.0;
             text-align: justify;
         }
         
@@ -727,11 +727,21 @@
                 } else {
                     title = item.title;
                 }
+                    // 作者截断：超过 3 位，第 3 位之后改为“等”(中文模式) 或“et al”(英文模式)
+                let authorsDisplay;
+                if (item.authorsZh && currentLang === 'zh' && isChinesePaper) {
+                    authorsDisplay = item.authorsZh;
+                } else {
+                    const parts = item.authors.split(',').map(p => p.trim());
+                    authorsDisplay = parts.length > 3
+                        ? parts.slice(0, 3).join(', ') + (currentLang === 'zh' ? ' 等' : ' et al.')
+                        : item.authors;
+                }
                 const year = item.year;
                 const volume = item.volume ? ', ' + item.volume : '';
                 const absNote = (currentLang === 'en' && isChinesePaper) ? ' (in Chinese with English abstract)' : '';
                 return `<li>
-                    <span class="publication-authors">${authors}.</span>
+                    <span class="publication-authors">${authorsDisplay}.</span>
                     <span class="publication-title">${title}.</span>
                     <span class="publication-journal">${journal}, ${year}${volume}${absNote}</span>
                 </li>`;
