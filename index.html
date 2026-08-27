@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
@@ -710,9 +710,6 @@
 
         function renderPublications() {
             const container = document.getElementById('publicationsList');
-
-            // 中文版:中文论文显示中文作者+中文标题+中文刊名;英文论文显示原文
-            // 英文版:中文论文显示英文作者+英文标题(in Chinese)+英文刊名;英文论文显示原文
             container.innerHTML = cvData.publications.map(item => {
                 const isChinesePaper = item.lang === 'zh';
 
@@ -720,37 +717,29 @@
                 const rawAuthors = (isChinesePaper && currentLang === 'zh' && item.authorsZh)
                     ? item.authorsZh : item.authors;
 
-                // 截断：中文论文 → “等”；英文论文 → “et al.”
-                // authorsZh 末尾可能是"等."（中文论文中文版）或"."（单人/双人）；authors 末尾可能是"et al."（>3人）或"."（≤3人）
-                // 统一策略：去掉末尾已存在的后缀 → 截断前3人 → 加回正确后缀
-                // 策略：统一去掉已存在的截断后缀 → 按人数处理 → 按语言加回正确后缀
-                // 英文模式：去掉 et al./et al → 截断前3人 → 加 et al.
-                // 中文模式：去掉 等./等,（若有）→ 截断前3人 → 加 等.
-                const etAlRE = /\s*，?\s*et al\.?$/i;
-                const zhongDengRE = /\s*[，,]\s*等[。.]?$/;
-
-                let stripped, suffix;
+                // 英文模式：>3人 → 前3人 + et al.；≤3人 → 全名 + .
+                // 中文模式：>3人 → 前3人 + 等；≤3人 → 全名 + .
+                let suffix, firstThree;
                 if (currentLang === 'en') {
-                    stripped = rawAuthors.replace(etAlRE, '');
-                    const parts = stripped.split(',').map(p => p.trim());
+                    const parts = rawAuthors.split(',').map(p => p.trim());
                     if (parts.length > 3) {
                         suffix = ' et al.';
+                        firstThree = parts.slice(0, 3).join(', ');
                     } else {
-                        // 去掉 et al. 后末尾已无句点，需补回
                         suffix = '.';
+                        firstThree = rawAuthors;
                     }
                 } else {
-                    stripped = rawAuthors.replace(zhongDengRE, '');
-                    const parts = stripped.split(/[,，]/).map(p => p.trim());
+                    const parts = rawAuthors.split(/[,，]/).map(p => p.trim());
                     if (parts.length > 3) {
-                        suffix = ' 等.';
+                        suffix = ' 等';
+                        firstThree = parts.slice(0, 3).join('，');
                     } else {
-                        // 去掉 等. 后末尾已无句点，需补回
                         suffix = '.';
+                        firstThree = rawAuthors;
                     }
                 }
-                const truncated = stripped.trimEnd();
-                const authorsFinal = truncated + suffix;
+                const authorsFinal = firstThree + suffix;
 
                 // 标题
                 const title = isChinesePaper
@@ -769,9 +758,7 @@
                     <span class="publication-journal">${journal}, ${year}${volume}${absNote}</span>
                 </li>`;
             }).join('');
-        }
-
-        function renderBooks() {
+        }function renderBooks() {
             const container = document.getElementById('booksList');
             container.innerHTML = cvData.books.map(item => `
                 <li>
