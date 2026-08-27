@@ -715,36 +715,48 @@
             // 英文版:中文论文显示英文作者+英文标题(in Chinese)+英文刊名;英文论文显示原文
             container.innerHTML = cvData.publications.map(item => {
                 const isChinesePaper = item.lang === 'zh';
-                const authors = (currentLang === 'zh' && isChinesePaper && item.authorsZh)
-                    ? item.authorsZh
-                    : item.authors;
-                const journal = (currentLang === 'en' && isChinesePaper && item.journalEn)
-                    ? item.journalEn
-                    : item.journal;
-                let title;
+
+                // 取哪套作者字段：中文论文在中文界面用 authorsZh，其余全部用 authors
+                const rawAuthors = (isChinesePaper && currentLang === 'zh' && item.authorsZh)
+                    ? item.authorsZh : item.authors;
+
+                // 截断：中文论文 → “等”；英文论文 → “et al.”
+                // authorsDisplay 不含末尾句点；截断后缀本身含句点
+                let truncated, suffix;
                 if (isChinesePaper) {
-                    title = currentLang === 'zh' ? item.title : item.titleEn;
+                    const parts = rawAuthors.split(/[,，]/).map(p => p.trim());
+                    if (parts.length > 3) {
+                        truncated = parts.slice(0, 3).join(', ');
+                        suffix = ' 等.';
+                    } else {
+                        truncated = rawAuthors;
+                        suffix = rawAuthors.endsWith('.') ? '' : '.';
+                    }
                 } else {
-                    title = item.title;
+                    const parts = rawAuthors.split(',').map(p => p.trim());
+                    if (parts.length > 3) {
+                        truncated = parts.slice(0, 3).join(', ');
+                        suffix = ' et al.';
+                    } else {
+                        truncated = rawAuthors;
+                        suffix = rawAuthors.endsWith('.') ? '' : '.';
+                    }
                 }
-                    // 作者截断：中文论文超3人 → 取 authorsZh 前3人 + "等"；英文论文超3人 → 取 authors 前3人 + "et al."
-                let authorsDisplay;
-                if (isChinesePaper && item.authorsZh) {
-                    const zhParts = item.authorsZh.split(/[,，]/).map(p => p.trim());
-                    authorsDisplay = zhParts.length > 3
-                        ? zhParts.slice(0, 3).join(', ') + ' 等'
-                        : item.authorsZh;
-                } else {
-                    const enParts = item.authors.split(',').map(p => p.trim());
-                    authorsDisplay = enParts.length > 3
-                        ? enParts.slice(0, 3).join(', ') + ' et al.'
-                        : item.authors;
-                }
+                const authorsFinal = truncated + suffix;
+
+                // 标题
+                const title = isChinesePaper
+                    ? (currentLang === 'zh' ? item.title : item.titleEn)
+                    : item.title;
+
+                // 期刊
+                const journal = (currentLang === 'en' && isChinesePaper && item.journalEn)
+                    ? item.journalEn : item.journal;
                 const year = item.year;
                 const volume = item.volume ? ', ' + item.volume : '';
                 const absNote = (currentLang === 'en' && isChinesePaper) ? ' (in Chinese with English abstract)' : '';
                 return `<li>
-                    <span class="publication-authors">${authorsDisplay}.</span>
+                    <span class="publication-authors">${authorsFinal}</span>
                     <span class="publication-title">${title}.</span>
                     <span class="publication-journal">${journal}, ${year}${volume}${absNote}</span>
                 </li>`;
