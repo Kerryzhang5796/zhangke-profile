@@ -723,22 +723,33 @@
                 // 截断：中文论文 → “等”；英文论文 → “et al.”
                 // authorsZh 末尾可能是"等."（中文论文中文版）或"."（单人/双人）；authors 末尾可能是"et al."（>3人）或"."（≤3人）
                 // 统一策略：去掉末尾已存在的后缀 → 截断前3人 → 加回正确后缀
-                // 英文版 → 统一用 et al.；中文版且中文论文 → 用 等
-                const chineseSuffixRE = /\s*，?\s*et al\.?$/i;
-                let parts, suffix;
+                // 策略：统一去掉已存在的截断后缀 → 按人数处理 → 按语言加回正确后缀
+                // 英文模式：去掉 et al./et al → 截断前3人 → 加 et al.
+                // 中文模式：去掉 等./等,（若有）→ 截断前3人 → 加 等.
+                const etAlRE = /\s*，?\s*et al\.?$/i;
+                const zhongDengRE = /\s*[，,]\s*等[。.]?$/;
+
+                let stripped, suffix;
                 if (currentLang === 'en') {
-                    // 英文版：去掉末尾已有的 et al. 后截断前3人，再加 et al.
-                    const stripped = rawAuthors.replace(chineseSuffixRE, '');
-                    parts = stripped.split(',').map(p => p.trim());
-                    suffix = ' et al.';
+                    stripped = rawAuthors.replace(etAlRE, '');
+                    const parts = stripped.split(',').map(p => p.trim());
+                    if (parts.length > 3) {
+                        suffix = ' et al.';
+                    } else {
+                        // 去掉 et al. 后末尾已无句点，需补回
+                        suffix = '.';
+                    }
                 } else {
-                    // 中文版：用 authorsZh，>3人用 等
-                    parts = rawAuthors.split(/[,，]/).map(p => p.trim());
-                    suffix = ' 等.';
+                    stripped = rawAuthors.replace(zhongDengRE, '');
+                    const parts = stripped.split(/[,，]/).map(p => p.trim());
+                    if (parts.length > 3) {
+                        suffix = ' 等.';
+                    } else {
+                        // 去掉 等. 后末尾已无句点，需补回
+                        suffix = '.';
+                    }
                 }
-                const truncated = parts.length > 3
-                    ? parts.slice(0, 3).join(', ')
-                    : parts.join(', ');
+                const truncated = stripped.trimEnd();
                 const authorsFinal = truncated + suffix;
 
                 // 标题
