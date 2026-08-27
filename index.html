@@ -604,7 +604,7 @@
 
         async function loadCVData() {
             try {
-                const response = await fetch('cv-data.json');
+                const response = await fetch('cv-data.json?v=2');
                 cvData = await response.json();
                 renderAll();
             } catch (error) {
