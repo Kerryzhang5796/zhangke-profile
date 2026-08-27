@@ -710,13 +710,33 @@
         
         function renderPublications() {
             const container = document.getElementById('publicationsList');
-            container.innerHTML = cvData.publications.map(item => `
-                <li>
-                    <span class="publication-authors">${item.authors}.</span>
-                    <span class="publication-title">"${item.title}".</span>
-                    <span class="publication-journal">${item.journal}, ${item.year}${item.volume ? ', ' + item.volume : ''}${item.note ? ' (' + item.note + ')' : ''}</span>
-                </li>
-            `).join('');
+            // 过滤：中文模式下只显示 lang==="zh" 的论文（这些已有英文翻译），
+            // 英文模式下显示所有论文（英文原生论文 + lang==="zh" 论文的英文标题）
+            const visible = currentLang === 'zh'
+                ? cvData.publications.filter(p => p.lang === 'zh')
+                : cvData.publications;
+
+            container.innerHTML = visible.map(item => {
+                const authors = item.authors;
+                let titlePart = '';
+                if (currentLang === 'zh' && item.lang === 'zh') {
+                    // 中文标题 + 英文标题括注
+                    titlePart = `<span class="publication-title">"${item.title}"</span>
+                     <span class="publication-journal" style="color:#888;font-style:italic;">[${item.titleEn}]</span>`;
+                } else {
+                    // 英文模式或英文原生论文：直接用 title 字段
+                    titlePart = `<span class="publication-title">"${item.title}"</span>`;
+                }
+                const journal = item.journal;
+                const year = item.year;
+                const volume = item.volume ? ', ' + item.volume : '';
+                const note = item.note ? ' (' + item.note + ')' : '';
+                return `<li>
+                    <span class="publication-authors">${authors}.</span>
+                    ${titlePart}
+                    <span class="publication-journal">${journal}, ${year}${volume}${note}</span>
+                </li>`;
+            }).join('');
         }
         
         function renderBooks() {
