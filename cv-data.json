@@ -1,4 +1,4 @@
-{
+﻿{
   "personal": {
     "name": "张珂",
     "nameEn": "Zhang Ke",
@@ -207,9 +207,7 @@
       "title": "Sedimentary basin evolution and its implications for outward expansion of the northeastern Tibetan Plateau: Insights from the Tongxin Basin, China",
       "journal": "Palaeogeography, Palaeoclimatology, Palaeoecology",
       "year": "2021",
-      "volume": "575(110460)",
-      "note": "https://doi.org/10.1016/j.palaeo.2021.110460"
-    },
+      "volume": "575(110460)"},
     {
       "authors": "Li XY, Liang H, <b>Zhang K</b>, Li ZY, Gong WB, Fu JL.",
       "authorsZh": "李肖杨, 梁浩, <b>张珂</b>, 李忠云, 公王斌, 傅建利.",
@@ -219,7 +217,6 @@
       "journalEn": "Acta Sedimentologica Sinica",
       "year": "2020",
       "volume": "38(2): 306-318",
-      "note": "doi:10.14027/j.issn.1000-0550.2019.040",
       "lang": "zh"
     },
     {
@@ -227,9 +224,7 @@
       "title": "Initial incision of the Jinshan Gorge of the Yellow River, China, constrained by terrestrial in situ cosmogenic nuclides chronology",
       "journal": "Quaternary International",
       "year": "2020",
-      "volume": "550: 111-119",
-      "note": "doi:10.1016/j.quaint.2020.03.047"
-    },
+      "volume": "550: 111-119"},
     {
       "authors": "<b>Zhang K</b>, Huang P, Xiao F.",
       "authorsZh": "<b>张珂</b>, 黄屏, 肖凡.",
@@ -243,12 +238,10 @@
     },
     {
       "authors": "<b>Zhang K</b>.",
-      "title": "ON THE LANDFORM SIEVE AND RESTORATION: INHERITANCE AND INNOVATION OF J.S.LEE'S ACADEMIC THOUGHTS",
+      "title": "On the landform sieve and restoration: Inheritance and innovation of J.S. Lee's academic thoughts",
       "journal": "Journal of Geomechanics",
       "year": "2019",
-      "volume": "25(5): 889-898",
-      "note": "doi:10.12090/j.issn.1006-6616.2019.25.05.073"
-    },
+      "volume": "25(5): 889-898"},
     {
       "authors": "Chen LY, <b>Zhang K</b>, Zhang GF, Fu JL, et al.",
       "authorsZh": "陈立业, <b>张珂</b>, 章桂芳, 傅建利, 等.",
@@ -258,7 +251,6 @@
       "journalEn": "Acta Scientiarum Naturalium Universitatis Sunyatseni",
       "year": "2018",
       "volume": "57(3): 14-23",
-      "note": "doi:10.13471/j.cnki.acta.snus.2018.03.003",
       "lang": "zh"
     },
     {
@@ -270,7 +262,6 @@
       "journalEn": "Quaternary Sciences",
       "year": "2017",
       "volume": "37(6): 1293-1308",
-      "note": "doi:10.11928/j.issn.1001-7410.2017.06.13",
       "lang": "zh"
     },
     {
@@ -289,7 +280,6 @@
       "journalEn": "Tropical Geography",
       "year": "2016",
       "volume": "36(3): 334-342",
-      "note": "doi:10.13284/j.cnki.rddl.002850",
       "lang": "zh"
     },
     {
@@ -301,7 +291,6 @@
       "journalEn": "Acta Sedimentologica Sinica",
       "year": "2015",
       "volume": "33(4): 713-723",
-      "note": "doi:10.14027/j.cnki.cjxb.2015.04.010",
       "lang": "zh"
     },
     {
@@ -313,7 +302,6 @@
       "journalEn": "Journal of Mountain Science",
       "year": "2015",
       "volume": "33(3): 268-278",
-      "note": "doi:10.16089/j.cnki.1008-2786.000034",
       "lang": "zh"
     },
     {
@@ -332,9 +320,7 @@
       "title": "Asymmetrical river valleys in response to tectonic tilting and strike-slip faulting, northeast margin of Tibetan Plateau",
       "journal": "Earth Surface Processes and Landforms",
       "year": "2014",
-      "volume": "39(9): 1642-1650",
-      "note": "doi:10.1002/ESP.3561"
-    },
+      "volume": "39(9): 1642-1650"},
     {
       "authors": "<b>Zhang K</b>.",
       "authorsZh": "<b>张珂</b>.",
@@ -344,7 +330,6 @@
       "journalEn": "Quaternary Sciences",
       "year": "2012",
       "volume": "32(5): 859-865",
-      "note": "doi:10.3969/j.issn.1001-7410.2012.05.04",
       "lang": "zh"
     },
     {
@@ -356,7 +341,6 @@
       "journalEn": "Geotectonica et Metallogenia",
       "year": "2010",
       "volume": "34(1): 92-104",
-      "note": "doi:10.3969/j.issn.1001-1552.2010.01.011",
       "lang": "zh"
     },
     {
@@ -368,7 +352,6 @@
       "journalEn": "Geological Review",
       "year": "2009",
       "volume": "55(6): 761-774",
-      "note": "doi:10.3321/j.issn.0371-5736.2009.06.001",
       "lang": "zh"
     },
     {
@@ -390,17 +373,13 @@
       "title": "Temporally varied coastal uplift rates north of the Littoral Fault Zone since the late Quaternary in the northern South China Sea: Insights from the wave-cut platform and cosmogenic exposure dating",
       "journal": "Frontiers in Earth Science",
       "year": "2023",
-      "volume": "10",
-      "note": "https://doi.org/10.3389/feart.2023.1026181"
-    },
+      "volume": "10"},
     {
       "authors": "Khan W, <b>Zhang K</b>, Liang H, et al.",
       "title": "Geochemical Assessment of River Sediments at the Outlets of Eastern Makran, Pakistan; Implications for Source Area Weathering and Provenance",
       "journal": "Minerals",
       "year": "2023",
-      "volume": "348(13)",
-      "note": "https://doi.org/10.3390/min13030348"
-    },
+      "volume": "348(13)"},
     {
       "authors": "Khan W, <b>Zhang K</b>, Liang H, et al.",
       "title": "Provenance for the Makran Flysch Basin in Pakistan: Implications for interaction between the Indian, Eurasian, and Arabian plates",
@@ -413,9 +392,7 @@
       "title": "Stepwise northward compression in the northeastern Tibetan Plateau: Insights from the chronology of the Baima Basin",
       "journal": "Global and Planetary Change",
       "year": "2023",
-      "volume": "220",
-      "note": "https://doi.org/10.1016/j.gloplacha.2022.104015"
-    },
+      "volume": "220"},
     {
       "authors": "Grapes R, <b>Zhang K</b>, Peng ZL.",
       "title": "Paralava and clinker products of coal combustion, Yellow River, Shanxi Province, China",

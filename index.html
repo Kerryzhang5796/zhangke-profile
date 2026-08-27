@@ -269,7 +269,7 @@
         }
         
         .publication-title {
-            font-style: italic;
+            /* not italic */
         }
         
         .publication-journal {
@@ -729,12 +729,11 @@
                 }
                 const year = item.year;
                 const volume = item.volume ? ', ' + item.volume : '';
-                const note = item.note ? ' (' + item.note + ')' : '';
                 const absNote = (currentLang === 'en' && isChinesePaper) ? ' (in Chinese with English abstract)' : '';
                 return `<li>
                     <span class="publication-authors">${authors}.</span>
-                    <span class="publication-title">"${title}".</span>
-                    <span class="publication-journal">${journal}, ${year}${volume}${note}${absNote}</span>
+                    <span class="publication-title">${title}.</span>
+                    <span class="publication-journal">${journal}, ${year}${volume}${absNote}</span>
                 </li>`;
             }).join('');
         }
