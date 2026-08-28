@@ -732,9 +732,19 @@
                     suffix = '.';
                 }
 
-                // 只对 Zhang K / 张珂 加粗
+                // 只对 Zhang K / 张珂 加粗：剥掉已有 <b> 标签，精确处理句点位置
                 const boldName = currentLang === 'zh' ? '张珂' : 'Zhang K';
-                const authorsHtml = parts.map(p => p.includes(boldName) ? '<b>' + p + '</b>' : p).join(', ') + suffix;
+                const authorsHtml = parts.map(p => {
+                    // 剥掉已有 <b>...</b> 标签
+                    var name = p.replace(/<b>(.*?)<\/b>/i, '$1');
+                    // 句点必须在标签外
+                    var hasPeriod = name.charAt(name.length - 1) === '.';
+                    if (hasPeriod) name = name.slice(0, -1);
+                    if (name.includes(boldName)) {
+                        return hasPeriod ? '<b>' + name + '</b>.' : '<b>' + name + '</b>';
+                    }
+                    return hasPeriod ? name + '.' : name;
+                }).join(', ') + suffix;
 
                 const title = isChinesePaper
                     ? (currentLang === 'zh' ? item.title : item.titleEn)
