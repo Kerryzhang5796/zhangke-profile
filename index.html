@@ -716,6 +716,11 @@
                 let rawAuthors = (isChinesePaper && currentLang === 'zh' && item.authorsZh)
                     ? item.authorsZh : item.authors;
 
+                // 规范化 HTML 实体（如 &#46; -> .）
+                rawAuthors = rawAuthors.replace(/&#(\d+);/g, function(m, code) {
+                    return String.fromCharCode(parseInt(code, 10));
+                });
+
                 // 去掉末尾 ", et al."
                 rawAuthors = rawAuthors.replace(/,\s*et al\.\s*$/i, '');
 
@@ -732,18 +737,22 @@
                     suffix = '.';
                 }
 
-                // 只对 Zhang K / 张珂 加粗：剥掉已有 <b> 标签，精确处理句点位置
+                // 只对 Zhang K / 张珂 加粗
                 const boldName = currentLang === 'zh' ? '张珂' : 'Zhang K';
                 const authorsHtml = parts.map(p => {
-                    // 剥掉已有 <b>...</b> 标签
-                    var name = p.replace(/<b>(.*?)<\/b>/i, '$1');
-                    // 句点必须在标签外
-                    var hasPeriod = name.charAt(name.length - 1) === '.';
-                    if (hasPeriod) name = name.slice(0, -1);
-                    if (name.includes(boldName)) {
-                        return hasPeriod ? '<b>' + name + '</b>.' : '<b>' + name + '</b>';
+                    // 剥掉所有 <b>...</b> 标签（包括嵌套）
+                    var plain = p;
+                    while (/<b>([\s\S]*?)<\/b>/i.test(plain)) {
+                        plain = plain.replace(/<b>([\s\S]*?)<\/b>/i, '$1');
                     }
-                    return hasPeriod ? name + '.' : name;
+                    // 剥掉名字末尾句点（句点统一由后缀 suffix 提供）
+                    if (plain.charAt(plain.length - 1) === '.') {
+                        plain = plain.slice(0, -1);
+                    }
+                    if (plain.includes(boldName)) {
+                        return '<b>' + plain + '</b>';
+                    }
+                    return plain;
                 }).join(', ') + suffix;
 
                 const title = isChinesePaper
