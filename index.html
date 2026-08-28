@@ -716,7 +716,7 @@
                 let rawAuthors = (isChinesePaper && currentLang === 'zh' && item.authorsZh)
                     ? item.authorsZh : item.authors;
 
-                // 规范化 HTML 实体（如 &#46; -> .）
+                // 规范化 HTML 实体
                 rawAuthors = rawAuthors.replace(/&#(\d+);/g, function(m, code) {
                     return String.fromCharCode(parseInt(code, 10));
                 });
@@ -741,18 +741,14 @@
                 const boldName = currentLang === 'zh' ? '张珂' : 'Zhang K';
                 const authorsHtml = parts.map(p => {
                     // 剥掉所有 <b>...</b> 标签（包括嵌套）
-                    var plain = p;
-                    while (/<b>([\s\S]*?)<\/b>/i.test(plain)) {
-                        plain = plain.replace(/<b>([\s\S]*?)<\/b>/i, '$1');
+                    var name = p;
+                    while (/<b>([\s\S]*?)<\/b>/i.test(name)) {
+                        name = name.replace(/<b>([\s\S]*?)<\/b>/i, '$1');
                     }
-                    // 剥掉名字末尾句点（句点统一由后缀 suffix 提供）
-                    if (plain.charAt(plain.length - 1) === '.') {
-                        plain = plain.slice(0, -1);
-                    }
-                    if (plain.includes(boldName)) {
-                        return '<b>' + plain + '</b>';
-                    }
-                    return plain;
+                    // 剥掉名字末尾句点（由 suffix 统一提供）
+                    if (name.charAt(name.length - 1) === '.') name = name.slice(0, -1);
+                    if (name.includes(boldName)) return '<b>' + name + '</b>';
+                    return name;
                 }).join(', ') + suffix;
 
                 const title = isChinesePaper
