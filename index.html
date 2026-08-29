@@ -604,7 +604,7 @@
 
         async function loadCVData() {
             try {
-                const response = await fetch('cv-data.json?v=1787925200');
+                const response = await fetch('cv-data.json?v=1787973450');
                 cvData = await response.json();
                 renderAll();
             } catch (error) {
@@ -763,8 +763,8 @@
                 const note = (currentLang === 'zh' && item.note) ? (' (' + item.note + ')') : '';
 
                 return '<li><span class="publication-authors">' + authorsHtml
-                    + '</span><span class="publication-title">' + title + '.</span>'
-                    + '<span class="publication-journal">' + journal + ', ' + year + volume + note + absNote + '</span></li>';
+                    + '</span> <span class="publication-title">' + title + '.</span>'
+                    + ' <span class="publication-journal">' + journal + ', ' + year + volume + note + absNote + '</span></li>';
             }).join('');
         }function renderBooks() {
             const container = document.getElementById('booksList');
